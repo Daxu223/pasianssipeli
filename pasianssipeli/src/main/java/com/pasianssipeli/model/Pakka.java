@@ -1,6 +1,7 @@
 package com.pasianssipeli.model;
 
 import java.util.LinkedList;
+import java.util.Collections;
 
 public class Pakka {
     
@@ -8,6 +9,7 @@ public class Pakka {
 
     //Konstruktori, jossa luodaan pakkaan kaikki 52 Kortti-objektia.
     public Pakka(){
+        pakka = new LinkedList<Kortti>();
         String[] maat = {"h", "s", "d", "c"};
 
         for(int i = 0; i < 4; i++){
@@ -17,6 +19,26 @@ public class Pakka {
         }
     }
 
+    //Metodi korttipakan sekoittamiseen.
+    public void sekoitaPakka(){
+        Collections.shuffle(pakka);
+    }
 
+    //Getterit
+    public LinkedList<Kortti> getPakka(){
+        return this.pakka;
+    }
 
+    //toString jolla testattiin sekoittamista.
+    @Override
+    public String toString(){
+        StringBuilder palautus = new StringBuilder();
+
+        for(Kortti kortti : pakka) {
+            palautus.append(kortti.getKortinMaa() + kortti.getKortinArvo() + ", ");
+        }
+
+        return palautus.toString();
+
+    }
 }
