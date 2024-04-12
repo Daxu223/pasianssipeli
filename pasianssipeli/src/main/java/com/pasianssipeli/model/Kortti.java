@@ -20,7 +20,8 @@ public class Kortti {
     }
 
     public void setKortinMaa(String maa){
-        if(maa == "Risti" || maa == "Pata" || maa == "Ruutu" || maa == "Hertta"){
+        // clubs, spades, diamonds, hearts
+        if(maa == "c" || maa == "s" || maa == "d" || maa == "h"){
             this.kortinMaa = maa;
         }
     }
