@@ -1,5 +1,5 @@
-package pasianssipeli.src.main.java.com.pasianssipeli;
+package com.pasianssipeli.view;
 
-public class Asetusruutu {
+public class AsetusPaneeli {
     // testii123
 }
