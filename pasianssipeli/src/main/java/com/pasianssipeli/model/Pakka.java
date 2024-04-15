@@ -2,6 +2,7 @@
 package com.pasianssipeli.model;
 
 import java.util.LinkedList;
+import java.awt.*;
 import java.util.Collections;
 
 public class Pakka extends Pino{
@@ -32,6 +33,19 @@ public class Pakka extends Pino{
     public LinkedList<Kortti> getPakka(){
         return this.pakka;
     }
+
+    @Override
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		Graphics2D g2d = (Graphics2D) g;
+		g2d.setStroke(new BasicStroke(5));
+		g2d.setColor(Color.WHITE);
+		g2d.drawRect(0, 0, 72, this.getHeight());
+
+		if (!isEmpty()) {
+			g.drawImage(Kortti.getCardBack(), 0, 0, 72, this.getHeight(), this);
+		}
+	}
 
     //toString jolla testattiin sekoittamista.
     @Override
