@@ -1,3 +1,4 @@
+//Kortti-luokka sisältää kortin arvon ja maan.
 package com.pasianssipeli.model;
 
 public class Kortti {

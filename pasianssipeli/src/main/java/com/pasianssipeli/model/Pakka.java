@@ -1,3 +1,4 @@
+//Pakka-luokka sisältää linkitetyn listan korttipakan korteista, ja metodilla sekoitaPakka() voi sekoittaa kortit.
 package com.pasianssipeli.model;
 
 import java.util.LinkedList;
