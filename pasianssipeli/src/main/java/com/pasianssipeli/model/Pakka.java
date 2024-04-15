@@ -4,12 +4,15 @@ package com.pasianssipeli.model;
 import java.util.LinkedList;
 import java.util.Collections;
 
-public class Pakka {
+public class Pakka extends Pino{
     
     private LinkedList<Kortti> pakka;
 
     //Konstruktori, jossa luodaan pakkaan kaikki 52 Kortti-objektia.
-    public Pakka(){
+    public Pakka(int x, int y){
+        super(x, y);
+        super.setSize(x, y); // TäHÄN TULEE KORTIN RESOLUUTIO!!!
+
         pakka = new LinkedList<Kortti>();
         String[] maat = {"h", "s", "d", "c"};
 
