@@ -91,6 +91,32 @@ public class Kortti {
 		return väri;
 	}
 
+    public static Image getFoundationBase(int suit) {
+		ImageIcon ii = new ImageIcon(
+				Kortti.class.getResource(directory + "/" + fpBaseFilename + suit + extension));
+		Image image = ii.getImage();
+		return image;
+	}
+
+	public static Image getCardOutline() {
+		ImageIcon ii = new ImageIcon(
+				Kortti.class.getResource(directory + "/" + cardOutlineFilename + extension));
+		Image image = ii.getImage();
+		return image;
+	}
+
+
+	public static Image getCardBack() {
+		ImageIcon ii = new ImageIcon(
+				Kortti.class.getResource(directory + "/" + cardBackFilename + extension));
+		Image image = ii.getImage();
+		return image;
+	}
+
+    public void showFace() {
+		faceUp = true;
+	}
+
     //SETTERIT
     public void setKortinArvo(Integer arvo){
         if(arvo <= 13 && arvo >= 1){
