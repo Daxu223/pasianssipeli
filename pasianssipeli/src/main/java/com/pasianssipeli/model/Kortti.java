@@ -11,7 +11,7 @@ public class Kortti {
 	cardOutlineFilename = "bottom01",
 	fpBaseFilename = "fpBase0";
 
-    public static String directory = "src/main/resources/cards", extension = ".gif"; // tähän korttikansion polku
+    public static String directory = "../../../cards", extension = ".gif"; // tähän korttikansion polku
     private Image im;
     private boolean faceUp;
     private Integer kortinArvo = null;
@@ -52,7 +52,7 @@ public class Kortti {
 			ImageIcon ii = new ImageIcon(getClass().getResource(directory + cardFile(kortinMaa, kortinArvo)));
 			im = ii.getImage();
 		}catch(Exception e) {
-			System.err.println("Error: " + e.getMessage());
+            e.printStackTrace();
 		}
     }
 

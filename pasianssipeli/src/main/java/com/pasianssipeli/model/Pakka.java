@@ -42,9 +42,10 @@ public class Pakka extends Pino{
 		g2d.setColor(Color.WHITE);
 		g2d.drawRect(0, 0, 72, this.getHeight());
 
-		if (!isEmpty()) {
+        // Pakka printtaantuu, jos pakka ei ole tyhjä. 15.4. ei toimi jonkin asian takia. Tutki asiaa.
+		// if (!isEmpty()) {
 			g.drawImage(Kortti.getCardBack(), 0, 0, 72, this.getHeight(), this);
-		}
+		// }
 	}
 
     //toString jolla testattiin sekoittamista.
