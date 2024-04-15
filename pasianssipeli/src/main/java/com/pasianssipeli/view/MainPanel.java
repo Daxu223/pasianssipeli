@@ -8,7 +8,6 @@ import javax.swing.JPanel;
 
 // Creates the main window, which is the basis for all the windows.
 public class MainPanel extends JPanel {
-    public static final int WINDOW_WIDTH = 1080, WINDOW_HEIGHT = 720;
     private CardLayout cardLayout = new CardLayout();
 
     public MainPanel() {
