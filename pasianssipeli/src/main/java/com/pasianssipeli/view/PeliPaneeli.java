@@ -1,30 +1,42 @@
 package com.pasianssipeli.view;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.GridLayout;
+
 import javax.swing.*;
 
-import com.pasianssipeli.model.Kortti;
-import com.pasianssipeli.model.Pakka;
-
 public class PeliPaneeli extends JPanel {
-    // public static final int WINDOW_WIDTH = 1080, WINDOW_HEIGHT = 720;
+    private static final int PINOJEN_MAARA = 2; // Yksi pakalle, josta nostetaan ja toinen toinen poistopakalle
+    private static final int KOHDEPAKKOJEN_MAARA = 4; // Tähän laitetaan kortit, joita etsitään.
     private MainPanel mainPanel;
 
     public PeliPaneeli(MainPanel mainPanel) {
         this.mainPanel = mainPanel;
-        setLayout(null);
+        this.setLayout(new BorderLayout());
 
-        JLabel teksti = new JLabel("Nyt pelaat peliä, joka ei toimi XD");
-        add(teksti);
-        teksti.setBounds(1080 / 2 - 100, 720 / 2 - 15, 200, 30); // TODO: joku laskenta mekaanikka keskittämiseen
+        JPanel topPanel = makeTopPanel(); // Tee yläpaneeli käyttämällä FlowLayout:ia.
+        this.add(topPanel, BorderLayout.NORTH); // Lisää yläpaneeli tähän komponenttiin (PeliPaneeliin)
         
-        JButton aloitusPaluu = new JButton("Palaa");
-        add(aloitusPaluu);
-        aloitusPaluu.setBounds(1080 / 2 - 55, 600, 100, 30); // TODO: järkevämpi laskumekaniikka
-        aloitusPaluu.addActionListener(e -> mainPanel.vaihdaNakyma("aloitus"));
+    }
 
-        Pakka pakka = new Pakka(50,50);
-        pakka.setBounds(1080 / 2, 500, 100, 100);
-        add(pakka);
+    // Yläpaneeli, pakka ja talletettavat kortit
+    private JPanel makeTopPanel() {;
+        JPanel topPanel = new JPanel(new GridLayout(1, PINOJEN_MAARA + KOHDEPAKKOJEN_MAARA, 10, 0)); // rows, cols, horizontal gap, vertical gap
+        topPanel.setBackground(Color.GREEN);
+
+        ImageIcon icon = new ImageIcon(getClass().getResource("../../../cards/back001.gif"));
+        JLabel pakkaKuvaSijainti = new JLabel(icon);
+        topPanel.add(pakkaKuvaSijainti);
+
+        JLabel poistoPakanSijainti = new JLabel(icon);
+        topPanel.add(poistoPakanSijainti);
+
+        for (int i = 0; i < KOHDEPAKKOJEN_MAARA; i++) {
+            JLabel kohdePakanSijainti = new JLabel();
+            topPanel.add(kohdePakanSijainti);
+        }
+        return topPanel;
 
     }
 }
