@@ -6,26 +6,87 @@ import javax.swing.*;
 public class PeliPaneeli extends JPanel {
     private static final int FOUNDATION_PAKKOJEN_MAARA = 4; // Tähän laitetaan kortit, joita etsitään.
     private final Dimension korttikoko = new Dimension(96, 128);
-    
-    // private MainPanel mainPanel;
 
     public PeliPaneeli(MainPanel mainPanel) {
-        // this.mainPanel = mainPanel;
         this.setLayout(new BorderLayout());
 
-        JPanel topPanel = makeTopPanel(); // Tee yläpaneeli käyttämällä FlowLayout:ia.
+        JPanel topPanel = makeTopPanel();
+        JPanel bottomPanel = makeBottomPanel(); //
+
+        this.add(topPanel, BorderLayout.NORTH); // Lisää yläpaneeli tähän PeliPaneeliin (atm pieni korttien koon takia)
+        this.add(bottomPanel, BorderLayout.SOUTH); // Lisätään alapaneeli alas
         
-        // Tämä on tällä hetkellä todella pieni, mutta se johtuu korttien koosta.
-        this.add(topPanel, BorderLayout.NORTH); // Lisää yläpaneeli tähän komponenttiin (PeliPaneeliin)
+    }
+
+    private JPanel makeBottomPanel() {
+        JPanel bottomPanel = new JPanel();
+        bottomPanel.setLayout(new GridBagLayout());
+        bottomPanel.setPreferredSize(new Dimension(MainFrame.getFrameX(), 75));
+        GridBagConstraints c = new GridBagConstraints();
+
+        // Asetetaan oletusasetuksia GridBagConstraints-olioon
+        c.fill = GridBagConstraints.BOTH; // Komponentin täyttösuunta: täytetään koko alue (size) molemmista suunnista.
+        c.insets = new Insets(0, 0, 0, 0); // En ole varma kuinka paljon nämä vaikuttaa, mutta säätää marginaaleja.
+        c.gridy = 1; // Napit ovat kaikki samalla rivillä.
+        c.weighty = 0.99;
+
+        // Lisää peru-nappi
+        JButton peruna = new JButton("Peru");
+        c.gridx = 0; // Lisätään vasemmalle soluun
+        c.weightx = 0.15; // Noin kuudes osa palkin koosta'
+        peruna.setBorder(null);
+        bottomPanel.add(peruna, c);
+
+        // Lisätään piste-alue
+        JPanel pisteAlue = new JPanel();
+        JLabel aika = new JLabel("Aika:");
+        JLabel pisteet = new JLabel("Pisteet:");
+        JLabel siirrot = new JLabel("Siirrot:");
+
+        pisteAlue.add(aika);
+        pisteAlue.add(pisteet);
+        pisteAlue.add(siirrot);
+
+        c.weightx = 0.4; // Noin kolmas osa alueesta
+        c.gridx = 1; // Toinen elementti
+        bottomPanel.add(pisteAlue, c);
+
+        // Lisätään uusi peli painike
+        JButton uusiPeli = new JButton("Uusi peli");
+        c.weightx = 0.15; // Saman verran kuin peru-nappi
+        c.gridx = 2; // Kolmas elementti
+        c.weighty = 0.9;
+        uusiPeli.setBorder(null);
+        bottomPanel.add(uusiPeli, c);
         
+        // Lisätään valikko
+        JButton valikko = new JButton("* * *");
+        c.weightx = 0.15;
+        c.gridx = 3; // Neljäs elementti
+        valikko.setBorder(null);
+        bottomPanel.add(valikko, c);
+        
+        // Tee separator, niin yläpaneeli ja muut osiot voidaan erottaa
+        c.gridx = 0;
+        c.gridy = 0;
+        c.weighty = 0.01;
+        c.gridwidth = GridBagConstraints.REMAINDER; // Asettaa erottajan kattamaan kaikki sarakkeet
+        c.weightx = 1; // Kaikki jäljellä oleva tila
+        c.fill = GridBagConstraints.HORIZONTAL;
+        JSeparator separator = new JSeparator();
+        separator.setPreferredSize(new Dimension(1, 1));
+        separator.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0)); // Säädä reunuksen etäisyyttä ylä- ja alapuolella
+        separator.setOrientation(SwingConstants.HORIZONTAL);
+        bottomPanel.add(separator, c);
+
+        return bottomPanel;
+
     }
 
     // Yläpaneeli, pakka ja talletettavat kortit. Käytetään GridBagLayouttia pohjana
     private JPanel makeTopPanel() {
-       
         JPanel topPanel = new JPanel();
-        GridBagLayout layout = new GridBagLayout(); // 3 riviä, 2 saraketta, 10 pikselin väliä
-        topPanel.setLayout(layout);
+        topPanel.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
 
         // Asetetaan oletusasetuksia GridBagConstraints-olioon
