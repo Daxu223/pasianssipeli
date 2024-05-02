@@ -1,21 +1,67 @@
 package com.pasianssipeli.view;
 
 import java.awt.*;
+import java.awt.event.*;
 import javax.swing.*;
 
 public class PeliPaneeli extends JPanel {
     private static final int FOUNDATION_PAKKOJEN_MAARA = 4; // Tähän laitetaan kortit, joita etsitään.
-    private final Dimension korttikoko = new Dimension(96, 128);
+    private ImageIcon kortinTakakuva = new ImageIcon(getClass().getResource("../../../cards/back001.gif"));
+    private Dimension korttikoko = new Dimension(100, 135);
 
     public PeliPaneeli(MainPanel mainPanel) {
         this.setLayout(new BorderLayout());
-
+        kortinTakakuva = resizeIcon(kortinTakakuva, korttikoko);
         JPanel topPanel = makeTopPanel();
-        JPanel bottomPanel = makeBottomPanel(); //
+        JPanel bottomPanel = makeBottomPanel();
+        JPanel gamePanel = makeGamePanel();
 
         this.add(topPanel, BorderLayout.NORTH); // Lisää yläpaneeli tähän PeliPaneeliin (atm pieni korttien koon takia)
         this.add(bottomPanel, BorderLayout.SOUTH); // Lisätään alapaneeli alas
-        
+        this.add(gamePanel, BorderLayout.CENTER); // Lisätään pelialue
+
+    }
+
+    private ImageIcon resizeIcon(ImageIcon icon, Dimension kortinkoko) {
+        Image img = icon.getImage();
+        Image resizedImage = img.getScaledInstance(kortinkoko.width, kortinkoko.height, Image.SCALE_SMOOTH);
+        return new ImageIcon(resizedImage);
+    }
+
+    private JPanel makeGamePanel() {
+        JPanel gamePanel = new JPanel();
+        gamePanel.setLayout(new GridBagLayout());
+        gamePanel.setPreferredSize(new Dimension(MainFrame.getFrameX(), MainFrame.getFrameY() - 225)); // Otettu huomioon ala ja yläpaneelin koot
+        gamePanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 0));  // Top, left, bottom, right
+        GridBagConstraints c = new GridBagConstraints();
+
+        // Asetetaan oletusasetuksia GridBagConstraints-olioon
+        c.fill = GridBagConstraints.BOTH; // Komponentin täyttösuunta: täytetään koko alue (size) molemmista suunnista.
+        c.insets = new Insets(30,25, 0, 25); // En ole varma kuinka paljon nämä vaikuttaa, mutta säätää marginaaleja.
+        c.weighty = 0.142; // Yksi jaettuna seitsemällä.
+        c.weightx = 1;
+        c.gridx = GridBagConstraints.RELATIVE; // Automaattisesti seuraava sijainti x-suunnassa
+        c.gridy = 0;
+
+        JLayeredPane pelipakka = new JLayeredPane();
+        int kortitPakassa = 1; // Ensimmäisesssä pakassa on yksi kortti
+
+        // Aseta kortit pinoihin ja tee seitsemän pinoa, joissa jokaisessa yksi kortti enemmän.
+        for (int pakanNumero = 0; pakanNumero < 7; pakanNumero++) {
+            for (int kortinNumero = 0; kortinNumero < kortitPakassa; kortinNumero++) {
+                JLabel kortti = new JLabel(kortinTakakuva);
+                kortti.setBounds(pakanNumero * 150, kortinNumero * 33, korttikoko.width, korttikoko.height); // Kortit kerroksittain, sivuttaisliike
+                c.gridy = kortinNumero;
+                pelipakka.add(kortti, Integer.valueOf(kortinNumero)); // Kerros määritetään Integer-arvolla
+            }
+
+            c.gridx = pakanNumero;
+            kortitPakassa++; // Pakka lisätty: korttien määrä kasvaa
+            gamePanel.add(pelipakka, c);
+
+        }
+
+        return gamePanel;
     }
 
     private JPanel makeBottomPanel() {
@@ -32,6 +78,7 @@ public class PeliPaneeli extends JPanel {
 
         // Lisää peru-nappi
         JButton peruna = new JButton("Peru");
+        peruna.setFont(new Font("Arial", Font.PLAIN, 40));
         c.gridx = 0; // Lisätään vasemmalle soluun
         c.weightx = 0.15; // Noin kuudes osa palkin koosta'
         peruna.setBorder(null);
@@ -53,6 +100,7 @@ public class PeliPaneeli extends JPanel {
 
         // Lisätään uusi peli painike
         JButton uusiPeli = new JButton("Uusi peli");
+        uusiPeli.setFont(new Font("Arial", Font.PLAIN, 40));
         c.weightx = 0.15; // Saman verran kuin peru-nappi
         c.gridx = 2; // Kolmas elementti
         c.weighty = 0.9;
@@ -61,6 +109,7 @@ public class PeliPaneeli extends JPanel {
         
         // Lisätään valikko
         JButton valikko = new JButton("* * *");
+        valikko.setFont(new Font("Arial", Font.PLAIN, 40));
         c.weightx = 0.15;
         c.gridx = 3; // Neljäs elementti
         valikko.setBorder(null);
@@ -75,7 +124,7 @@ public class PeliPaneeli extends JPanel {
         c.fill = GridBagConstraints.HORIZONTAL;
         JSeparator separator = new JSeparator();
         separator.setPreferredSize(new Dimension(1, 1));
-        separator.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0)); // Säädä reunuksen etäisyyttä ylä- ja alapuolella
+        separator.setBorder(BorderFactory.createEmptyBorder(0, 0, 20, 0)); // Säädä reunuksen etäisyyttä ylä- ja alapuolella
         separator.setOrientation(SwingConstants.HORIZONTAL);
         bottomPanel.add(separator, c);
 
@@ -97,20 +146,20 @@ public class PeliPaneeli extends JPanel {
         c.weighty = 0.9;
 
         // Lisää nostopakka
-        ImageIcon kortinTaka = new ImageIcon(getClass().getResource("../../../cards/back001.gif"));
-        JLabel pakka = new JLabel(kortinTaka);
+        JLabel pakka = new JLabel(kortinTakakuva);
         c.gridx = 0; // Ensimmäinen sarake
         c.weightx = 0.1; // n. kymmenesosa yläpalkista
         topPanel.add(pakka, c);
 
         // Poisto pakka: eli kortit johon kortit nostetaan
         JLayeredPane poistopakka = new JLayeredPane();
-        poistopakka.setPreferredSize(new Dimension(96 + 99, 128)); // Kortin korkeus + korttien sivuttaisliike
+        poistopakka.setPreferredSize(new Dimension(korttikoko.width + 99, korttikoko.height)); // Kortin korkeus + korttien sivuttaisliike
+        poistopakka.setMinimumSize(new Dimension(korttikoko.width + 99, korttikoko.height));
 
         // Luo ja aseta kortit poistopakkaan. Huomioidaan, että flowlayout käyttää gridbaglayouttia
         for (int i = 0; i < 3; i++) {
-            JLabel kortti = new JLabel(kortinTaka);
-            kortti.setBounds(33 * i, -1, korttikoko.width, korttikoko.height); // Kortit kerroksittain, sivuttaisliike
+            JLabel kortti = new JLabel(kortinTakakuva);
+            kortti.setBounds(33 * i, 0, korttikoko.width, korttikoko.height); // Kortit kerroksittain, sivuttaisliike
             c.gridx = 1 + i;
             c.weightx = 0.1;
             poistopakka.add(kortti, Integer.valueOf(i)); // Kerros määritetään Integer-arvolla
@@ -121,16 +170,19 @@ public class PeliPaneeli extends JPanel {
         // Asetataan "laatikko" peruspakkojen ja pinojen välille
         c.gridx = 5;
         c.weightx = 0.4; // Melkein puolet palkin tilasta
-        topPanel.add(Box.createHorizontalStrut(300), c);
+        topPanel.add(Box.createHorizontalStrut(korttikoko.width * 2), c);
 
+    
 
         for (int i = 1; i < FOUNDATION_PAKKOJEN_MAARA + 1; i++) {
-            ImageIcon foundationIcon = new ImageIcon(getClass().getResource("../../../cards/fpBase0"+ i + ".gif"));
+            ImageIcon foundationIcon = new ImageIcon(getClass().getResource("../../../cards/fpBase0" + i + ".gif"));
+            foundationIcon = resizeIcon(foundationIcon, korttikoko);
             JLabel perusta = new JLabel(foundationIcon);
-            perusta.setPreferredSize(korttikoko);
-            perusta.setBounds(i * 10, 0, korttikoko.width, korttikoko.height);
+            perusta.setPreferredSize(new Dimension(korttikoko.width, korttikoko.height)); // Kortin korkeus + korttien sivuttaisliike
+            perusta.setMinimumSize(new Dimension(korttikoko.width, korttikoko.height));
+            perusta.setBounds(i, 0, korttikoko.width, korttikoko.height);
             c.gridx = 6 + i;
-            c.weightx = 1;
+            c.weightx = 0.10;
             topPanel.add(perusta, c);
         }
 
