@@ -1,10 +1,10 @@
 package com.pasianssipeli.view;
 
 import java.awt.CardLayout;
-import java.awt.Dimension;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
+
+import com.pasianssipeli.controller.ValikkoOhjain;
 
 // Creates the main window, which is the basis for all the windows.
 public class MainPanel extends JPanel {
@@ -20,9 +20,15 @@ public class MainPanel extends JPanel {
         AloitusPaneeli aloitus = new AloitusPaneeli(this);
         add(aloitus, "aloitus");
 
-        PeliPaneeli peli = new PeliPaneeli(this);
+        PeliPaneeli peli = luoPeliPaneeli();
         add(peli, "peli");
 
+    }
+
+    private PeliPaneeli luoPeliPaneeli() {
+        PeliPaneeli peliPaneeli = new PeliPaneeli(this);
+        new ValikkoOhjain(this, peliPaneeli); // Ohjaimet yhdistää elementtejä toisiinsa.
+        return peliPaneeli;
     }
 
     public void vaihdaNakyma(String naytonNimi) {

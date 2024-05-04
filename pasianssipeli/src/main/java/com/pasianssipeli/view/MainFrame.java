@@ -4,6 +4,8 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
+import com.pasianssipeli.controller.ValikkoOhjain;
+
 public class MainFrame extends JFrame {
 
     private static int FRAME_WIDTH = 1080;
@@ -18,6 +20,7 @@ public class MainFrame extends JFrame {
         // Lisää mainPanel ikkunaan.
         MainPanel mainPanel = new MainPanel();
         add(mainPanel);
+
         pack();
         setLocationRelativeTo(null); // Keskitä näyttö avattaessa
         setVisible(true);

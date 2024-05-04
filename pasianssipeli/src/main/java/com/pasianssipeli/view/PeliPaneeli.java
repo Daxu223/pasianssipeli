@@ -7,19 +7,47 @@ import javax.swing.*;
 public class PeliPaneeli extends JPanel {
     private static final int FOUNDATION_PAKKOJEN_MAARA = 4; // Tähän laitetaan kortit, joita etsitään.
     private ImageIcon kortinTakakuva = new ImageIcon(getClass().getResource("../../../cards/back001.gif"));
-    private Dimension korttikoko = new Dimension(100, 135);
+    private Dimension korttikoko = new Dimension(100, 135);    
+    
+    private JPanel topPanel;
+    private JPanel gamePanel;
+    private JPanel bottomPanel;
+    
+    private JButton valikkoNappi;
+    private JPopupMenu valikkoMenu;
+
+    private JButton uusiPeliNappi;
+    private JButton peruNappi;
 
     public PeliPaneeli(MainPanel mainPanel) {
         this.setLayout(new BorderLayout());
         kortinTakakuva = resizeIcon(kortinTakakuva, korttikoko);
-        JPanel topPanel = makeTopPanel();
-        JPanel bottomPanel = makeBottomPanel();
-        JPanel gamePanel = makeGamePanel();
+        this.topPanel = makeTopPanel();
+        this.bottomPanel = makeBottomPanel();
+        this.gamePanel = makeGamePanel();
 
         this.add(topPanel, BorderLayout.NORTH); // Lisää yläpaneeli tähän PeliPaneeliin (atm pieni korttien koon takia)
         this.add(bottomPanel, BorderLayout.SOUTH); // Lisätään alapaneeli alas
         this.add(gamePanel, BorderLayout.CENTER); // Lisätään pelialue
 
+    }
+
+    // TODO: Näyttää ihan ok hyvältä, mutta tekstien pitäisi olla menuitemeiden yläosassa
+    private JPopupMenu teeValikko() {
+        JPopupMenu menu = new JPopupMenu();
+        JMenuItem asetukset = new JMenuItem("ASETUKSET", JMenuItem.NORTH);
+        asetukset.setPreferredSize(new Dimension(180, 90));
+        asetukset.setFont(new Font("Arial", Font.PLAIN, 25));
+        JMenuItem ohjeet = new JMenuItem("OHJEET", JMenuItem.NORTH);
+        ohjeet.setPreferredSize(new Dimension(180, 90));
+        ohjeet.setFont(new Font("Arial", Font.PLAIN, 25));
+        JMenuItem valikkoon = new JMenuItem("VALIKKO", JMenuItem.NORTH);
+        valikkoon.setPreferredSize(new Dimension(180, 90));
+        valikkoon.setFont(new Font("Arial", Font.PLAIN, 25));
+        menu.add(asetukset);
+        menu.add(ohjeet);
+        menu.add(valikkoon);
+        return menu;
     }
 
     private ImageIcon resizeIcon(ImageIcon icon, Dimension kortinkoko) {
@@ -77,13 +105,14 @@ public class PeliPaneeli extends JPanel {
         c.weighty = 0.99;
 
         // Lisää peru-nappi
-        JButton peruna = new JButton("Peru");
-        peruna.setFont(new Font("Arial", Font.PLAIN, 40));
+        this.peruNappi = new JButton("Peru");
+        peruNappi.setFont(new Font("Arial", Font.PLAIN, 40));
         c.gridx = 0; // Lisätään vasemmalle soluun
-        c.weightx = 0.15; // Noin kuudes osa palkin koosta'
-        peruna.setBorder(null);
-        bottomPanel.add(peruna, c);
+        c.weightx = 0.15; // Noin kuudes osa palkin koosta
+        peruNappi.setBorder(null);
+        bottomPanel.add(peruNappi, c);
 
+        // TODO: Paremmaksi, esim. kuvat ja tälläiset
         // Lisätään piste-alue
         JPanel pisteAlue = new JPanel();
         JLabel aika = new JLabel("Aika:");
@@ -99,21 +128,23 @@ public class PeliPaneeli extends JPanel {
         bottomPanel.add(pisteAlue, c);
 
         // Lisätään uusi peli painike
-        JButton uusiPeli = new JButton("Uusi peli");
-        uusiPeli.setFont(new Font("Arial", Font.PLAIN, 40));
+        this.uusiPeliNappi = new JButton("Uusi peli");
+        uusiPeliNappi.setFont(new Font("Arial", Font.PLAIN, 40));
         c.weightx = 0.15; // Saman verran kuin peru-nappi
         c.gridx = 2; // Kolmas elementti
         c.weighty = 0.9;
-        uusiPeli.setBorder(null);
-        bottomPanel.add(uusiPeli, c);
+        uusiPeliNappi.setBorder(null);
+        bottomPanel.add(uusiPeliNappi, c);
         
         // Lisätään valikko
-        JButton valikko = new JButton("* * *");
-        valikko.setFont(new Font("Arial", Font.PLAIN, 40));
+        this.valikkoNappi = new JButton("* * *");
+        valikkoNappi.setFont(new Font("Arial", Font.PLAIN, 40));
         c.weightx = 0.15;
         c.gridx = 3; // Neljäs elementti
-        valikko.setBorder(null);
-        bottomPanel.add(valikko, c);
+        valikkoNappi.setBorder(null);
+        valikkoMenu = teeValikko();
+        valikkoNappi.setComponentPopupMenu(valikkoMenu);
+        bottomPanel.add(valikkoNappi, c);
         
         // Tee separator, niin yläpaneeli ja muut osiot voidaan erottaa
         c.gridx = 0;
@@ -201,4 +232,29 @@ public class PeliPaneeli extends JPanel {
         return topPanel;
 
     }
+
+    // TODO: Ehkä koko valikko kannattaa refaktoroida omaan luokkaansa.
+    public JButton getValikkoNappi() {
+        return valikkoNappi;
+    }
+
+    public JPopupMenu getValikkoMenu() {
+        return valikkoMenu;
+    }
+
+    public void showMenuAt(int x, int y) {
+        valikkoMenu.show(valikkoNappi, x, y);
+    }
+
+    public void addMenuItemListener(int menuItemIndex, ActionListener listener) {
+        JMenuItem item = getMenuItem(menuItemIndex);
+        if (item != null) {
+            item.addActionListener(listener);
+        }
+    }
+
+    public JMenuItem getMenuItem(int index) {
+        return (JMenuItem) valikkoMenu.getComponent(index);
+    }
+
 }
