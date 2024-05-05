@@ -19,7 +19,7 @@ public class ValikkoOhjain {
     }
 
     private void addControlLogic() {
-        peliPaneeli.addMenuItemListener(0, e -> showSettings()); // Tässä voidaan vaihtaa näkymää niin kuin aloituksessa
+        peliPaneeli.addMenuItemListener(0, e -> mainPanel.vaihdaNakyma("asetukset")); // Tässä voidaan vaihtaa näkymää niin kuin aloituksessa
         peliPaneeli.addMenuItemListener(1, e -> showHelp()); // Voidaan luoda pop-up
         peliPaneeli.addMenuItemListener(2, e -> mainPanel.vaihdaNakyma("aloitus"));
 
@@ -61,6 +61,6 @@ public class ValikkoOhjain {
     }
 
     private void showHelp() {
-        System.out.println("Ohjeet valittu.");
+        System.out.println("Ohjeet valittu");
     }
 }

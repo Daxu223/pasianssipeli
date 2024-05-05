@@ -9,7 +9,13 @@ public class AloitusPaneeli extends JPanel {
         this.mainPanel = mainPanel;
         JButton aloitusNappi = new JButton("Pelaa peliä");
         aloitusNappi.addActionListener(e -> mainPanel.vaihdaNakyma("peli"));
-        add(aloitusNappi);
         
+        JButton asetusNappi = new JButton("Asetukset");
+        asetusNappi.addActionListener(e -> mainPanel.vaihdaNakyma("asetukset"));
+        
+
+        add(aloitusNappi);
+        add(asetusNappi);
+
     }
 }
