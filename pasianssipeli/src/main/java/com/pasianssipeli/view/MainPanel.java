@@ -4,6 +4,7 @@ import java.awt.CardLayout;
 
 import javax.swing.JPanel;
 
+import com.pasianssipeli.controller.AloitusOhjain;
 import com.pasianssipeli.controller.ValikkoOhjain;
 
 // Creates the main window, which is the basis for all the windows.
@@ -19,7 +20,7 @@ public class MainPanel extends JPanel {
     }
 
     private void alustaIkkunat() {
-        this.aloitusRuutu = new AloitusPaneeli(this);
+        this.aloitusRuutu = luoAloitusPaneeli();
         add(aloitusRuutu, "aloitus");
 
         this.peliRuutu = luoPeliPaneeli();
@@ -40,6 +41,12 @@ public class MainPanel extends JPanel {
         PeliPaneeli peliPaneeli = new PeliPaneeli(this); // Väliaikainen paneeli, joka palautetaan.
         new ValikkoOhjain(this, peliPaneeli); // Ohjaimet yhdistää elementtejä toisiinsa.
         return peliPaneeli;
+    }
+
+    private AloitusPaneeli luoAloitusPaneeli() {
+        AloitusPaneeli aloitusPaneeli = new AloitusPaneeli(this); // Väliaikainen paneeli, joka palautetaan.
+        new AloitusOhjain(this, aloitusPaneeli); // Ohjaimet yhdistää elementtejä toisiinsa.
+        return aloitusPaneeli;
     }
 
     public void vaihdaNakyma(String naytonNimi) {
