@@ -16,7 +16,7 @@ public class AloitusPaneeli extends JPanel {
     private JLabel nappi4;
 
     private Font tekstinKoko = new Font("Arial", Font.BOLD, 18);
-    private Dimension nappienKoko = new Dimension(140, 30);
+    private Dimension nappienKoko = new Dimension(50, 30);
 
     public AloitusPaneeli(MainPanel mainPanel) {
 
