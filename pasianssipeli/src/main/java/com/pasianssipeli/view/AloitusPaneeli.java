@@ -39,7 +39,9 @@ public class AloitusPaneeli extends JPanel {
         otsikkopaneeli.setPreferredSize(new Dimension(MainFrame.getFrameX(), 400));
 
         JLabel otsikko = new JLabel("PASIANSSI", JLabel.CENTER);
+        otsikko.setForeground(Color.orange);
         otsikko.setFont(new Font("Arial", Font.BOLD, 100));
+        otsikkopaneeli.setBackground(Color.lightGray);
 
         otsikkopaneeli.add(otsikko, BorderLayout.PAGE_END);
 
@@ -72,6 +74,8 @@ public class AloitusPaneeli extends JPanel {
         this.nappi4 = new JLabel("LOPETA");
         nappi4.setFont(new Font("Arial", Font.BOLD, 15));
 
+        keskipaneeli.setBackground(Color.lightGray);
+
         keskipaneeli.add(nappi1, gbc);
         keskipaneeli.add(nappi2, gbc);
         keskipaneeli.add(nappi3, gbc);
@@ -86,6 +90,7 @@ public class AloitusPaneeli extends JPanel {
         alapaneeli.setLayout(new BorderLayout());
 
         JLabel tekijat = new JLabel("© Samu Kollin & Jaakko Ollila", JLabel.CENTER);
+        alapaneeli.setBackground(Color.lightGray);
 
         alapaneeli.add(tekijat, BorderLayout.WEST);
 
