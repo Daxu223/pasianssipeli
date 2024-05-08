@@ -4,8 +4,6 @@ import java.awt.Dimension;
 
 import javax.swing.JFrame;
 
-import com.pasianssipeli.controller.ValikkoOhjain;
-
 public class MainFrame extends JFrame {
 
     private static int FRAME_WIDTH = 1080;
@@ -33,5 +31,5 @@ public class MainFrame extends JFrame {
     public static int getFrameX() {
         return FRAME_WIDTH;
     }
-    
+
 }

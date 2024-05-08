@@ -1,7 +1,6 @@
 package com.pasianssipeli.view;
 
 import java.awt.*;
-import java.awt.event.*;
 import javax.swing.*;
 
 public class AsetusPaneeli extends JPanel {
@@ -11,6 +10,14 @@ public class AsetusPaneeli extends JPanel {
     private Font tekstinKoko = new Font("Arial", Font.BOLD, 18);
     private Dimension nappienKoko = new Dimension(140, 30);
 
+    private JButton backButton;
+    private JButton closeButton;
+
+    private CustomToggleButton ajastinNappi;
+    private CustomToggleButton siirrotNappi;
+    private CustomToggleButton aanetNappi;
+    private CustomToggleButton musiikkiNappi;
+
 
     public AsetusPaneeli(MainPanel mainPanel) {
         // Tykkäsin borderlayoutista, niin käytän sitä komponenttien sijoitteluun.
@@ -19,15 +26,14 @@ public class AsetusPaneeli extends JPanel {
         this.asetukset = teeAsetukset();
         this.add(ylamenu, BorderLayout.NORTH); // Menu ylös
         this.add(asetukset); // Ei erityistä paikkaa, vain yläpalkki ja tämä.
-        
     }
 
     private JPanel teeYlamenu() {
         JPanel ylamenu = new JPanel();
         ylamenu.setLayout(new BorderLayout()); // Hyvin kustomoitava layoutti
         
-        JButton backButton = new JButton("<");
-        JButton closeButton = new JButton("X");
+        this.backButton = new JButton("<");
+        this.closeButton = new JButton("X");
 
         ylamenu.add(backButton, BorderLayout.WEST);
         ylamenu.add(closeButton, BorderLayout.EAST);
@@ -81,10 +87,10 @@ public class AsetusPaneeli extends JPanel {
         alemmanPaneelinPaikka.gridy = 3;
  
         // Alustetaan napit
-        JToggleButton ajastinNappi = new JToggleButton("Päällä");
-        JToggleButton siirrotNappi = new JToggleButton("Päällä");
-        JToggleButton aanetNappi = new JToggleButton("Päällä");
-        JToggleButton musiikkiNappi = new JToggleButton("Päällä");
+        this.ajastinNappi = new CustomToggleButton("Päällä");
+        this.siirrotNappi = new CustomToggleButton("Päällä");
+        this.aanetNappi = new CustomToggleButton("Päällä");
+        this.musiikkiNappi = new CustomToggleButton("Päällä");
 
         ajastinNappi.setPreferredSize(nappienKoko);
         siirrotNappi.setPreferredSize(nappienKoko);
@@ -145,6 +151,31 @@ public class AsetusPaneeli extends JPanel {
         c.gridx = x;
         c.gridy = y;
         panel.add(comp, c);
+    }
+
+    // GETTERIT
+    public JButton getBackButton() {
+        return backButton;
+    }
+
+    public JButton getCloseButton() {
+        return closeButton;
+    }
+
+    public JToggleButton getAjastinNappi() {
+        return ajastinNappi;
+    }
+
+    public JToggleButton getSiirrotNappi() {
+        return siirrotNappi;
+    }
+    
+    public JToggleButton getAanetNappi() {
+        return aanetNappi;
+    }
+    
+    public JToggleButton getMusiikkiNappi() {
+        return musiikkiNappi;
     }
 
 }

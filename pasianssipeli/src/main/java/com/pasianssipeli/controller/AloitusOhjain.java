@@ -3,6 +3,8 @@ package com.pasianssipeli.controller;
 import com.pasianssipeli.view.MainPanel;
 import com.pasianssipeli.view.PeliPaneeli;
 import com.pasianssipeli.view.AloitusPaneeli;
+import com.pasianssipeli.view.LopetusDialog;
+import com.pasianssipeli.view.MainFrame;
 
 import java.awt.Component;
 import java.awt.Dimension;
@@ -12,11 +14,13 @@ import javax.swing.*;
 
 public class AloitusOhjain {
     private MainPanel mainPanel;
+    private MainFrame mainFrame;
     private AloitusPaneeli aloitusPaneeli;
 
-    public AloitusOhjain(MainPanel mainPanel, AloitusPaneeli aloitusPaneeli) {
+    public AloitusOhjain(MainPanel mainPanel, MainFrame mainFrame, AloitusPaneeli aloitusPaneeli) {
         this.mainPanel = mainPanel;
         this.aloitusPaneeli = aloitusPaneeli;
+        this.mainFrame = mainFrame; // Tuotu, koska dialogi halutaan liittää tähän.
         addControlLogic();
     }
 
@@ -57,7 +61,7 @@ public class AloitusOhjain {
                 ohjeetLabel.setText("OHJEET");
             }
             public void mouseClicked(MouseEvent e){
-                mainPanel.vaihdaNakyma("ohjeet");
+                // newOhjeDialog(mainFrame);
             }
         });
 
@@ -70,8 +74,8 @@ public class AloitusOhjain {
                 lopetaLabel.setText("LOPETA");
             }
             public void mouseClicked(MouseEvent e){
-                //TÄHÄN HALUATKO VARMASTI LOPETTAA RUUTU
-                mainPanel.vaihdaNakyma("lopeta");
+                MainFrame mainFrame = mainPanel.getMainFrame();
+                new LopetusDialog(mainFrame);
             }
         });
 

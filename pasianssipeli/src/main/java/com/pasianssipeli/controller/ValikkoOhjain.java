@@ -39,7 +39,6 @@ public class ValikkoOhjain {
             }
         });
 
-
         // Tähän tulisi toinen uusi actionListener tarvittaessa. esim
         // uusiPeliNappi.addActionListener(new ActionListener() .....)
 
@@ -55,11 +54,7 @@ public class ValikkoOhjain {
         }
         return totalHeight;
     }
-
-    private void showSettings() {
-        System.out.println("Asetukset valittu.");
-    }
-
+    
     private void showHelp() {
         System.out.println("Ohjeet valittu");
     }
