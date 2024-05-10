@@ -1,7 +1,9 @@
 package com.pasianssipeli.controller;
 
 import com.pasianssipeli.view.MainPanel;
+import com.pasianssipeli.view.OhjeFrame;
 import com.pasianssipeli.view.PeliPaneeli;
+import com.pasianssipeli.Main;
 import com.pasianssipeli.view.AloitusPaneeli;
 import com.pasianssipeli.view.LopetusDialog;
 import com.pasianssipeli.view.MainFrame;
@@ -61,7 +63,8 @@ public class AloitusOhjain {
                 ohjeetLabel.setText("OHJEET");
             }
             public void mouseClicked(MouseEvent e){
-                // newOhjeDialog(mainFrame);
+                MainFrame mainFrame = mainPanel.getMainFrame();
+                new OhjeFrame(mainFrame);
             }
         });
 

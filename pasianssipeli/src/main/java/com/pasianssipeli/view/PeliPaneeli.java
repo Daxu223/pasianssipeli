@@ -18,6 +18,7 @@ public class PeliPaneeli extends JPanel {
 
     private JButton uusiPeliNappi;
     private JButton peruNappi;
+    private JButton voititPelinNappi;
 
     public PeliPaneeli(MainPanel mainPanel) {
         this.setLayout(new BorderLayout());
@@ -112,6 +113,14 @@ public class PeliPaneeli extends JPanel {
         peruNappi.setBorder(null);
         bottomPanel.add(peruNappi, c);
 
+        // Lisää voitit pelin -testinappi
+        this.voititPelinNappi = new JButton("Voitit Pelin test");
+        voititPelinNappi.setFont(new Font("Arial", Font.PLAIN, 10));
+        c.gridx = 1;
+        c.weightx = 0.15;
+        voititPelinNappi.setBorder(null);
+        bottomPanel.add(voititPelinNappi, c);
+
         // TODO: Paremmaksi, esim. kuvat ja tälläiset
         // Lisätään piste-alue
         JPanel pisteAlue = new JPanel();
@@ -124,14 +133,14 @@ public class PeliPaneeli extends JPanel {
         pisteAlue.add(siirrot);
 
         c.weightx = 0.4; // Noin kolmas osa alueesta
-        c.gridx = 1; // Toinen elementti
+        c.gridx = 2; // Toinen elementti
         bottomPanel.add(pisteAlue, c);
 
         // Lisätään uusi peli painike
         this.uusiPeliNappi = new JButton("Uusi peli");
         uusiPeliNappi.setFont(new Font("Arial", Font.PLAIN, 40));
         c.weightx = 0.15; // Saman verran kuin peru-nappi
-        c.gridx = 2; // Kolmas elementti
+        c.gridx = 3; // Kolmas elementti
         c.weighty = 0.9;
         uusiPeliNappi.setBorder(null);
         bottomPanel.add(uusiPeliNappi, c);
@@ -140,7 +149,7 @@ public class PeliPaneeli extends JPanel {
         this.valikkoNappi = new JButton("* * *");
         valikkoNappi.setFont(new Font("Arial", Font.PLAIN, 40));
         c.weightx = 0.15;
-        c.gridx = 3; // Neljäs elementti
+        c.gridx = 4; // Neljäs elementti
         valikkoNappi.setBorder(null);
         valikkoMenu = teeValikko();
         valikkoNappi.setComponentPopupMenu(valikkoMenu);
@@ -234,6 +243,19 @@ public class PeliPaneeli extends JPanel {
     }
 
     // TODO: Ehkä koko valikko kannattaa refaktoroida omaan luokkaansa.
+
+    public JButton getTestiNappi(){
+        return voititPelinNappi;
+    }
+
+    public JButton getUusiPeliNappi(){
+        return uusiPeliNappi;
+    }
+
+    public JButton getPeruNappi(){
+        return peruNappi;
+    }
+
     public JButton getValikkoNappi() {
         return valikkoNappi;
     }

@@ -12,6 +12,7 @@ public class AsetusPaneeli extends JPanel {
 
     private JButton backButton;
     private JButton closeButton;
+    private JButton nollausNappi;
 
     private CustomToggleButton ajastinNappi;
     private CustomToggleButton siirrotNappi;
@@ -138,7 +139,7 @@ public class AsetusPaneeli extends JPanel {
         bottomFiller.setOpaque(false);
         asetukset.add(bottomFiller, alemmanPaneelinPaikka);
 
-        JButton nollausNappi = new JButton("Nollaa asetukset");
+        this.nollausNappi = new JButton("Nollaa asetukset");
         nollausNappi.setPreferredSize(new Dimension(250, 50));
         asetukset.add(nollausNappi, nollausNapinPaikka);
 
@@ -176,6 +177,25 @@ public class AsetusPaneeli extends JPanel {
     
     public JToggleButton getMusiikkiNappi() {
         return musiikkiNappi;
+    }
+
+    public JButton getNollausNappi(){
+        return nollausNappi;
+    }
+
+    public void setButtonsSelected(){
+        if(this.aanetNappi.isSelected()){
+            this.aanetNappi.setSelected(false);
+        }
+        if(this.siirrotNappi.isSelected()){
+            this.siirrotNappi.setSelected(false);
+        }
+        if(this.ajastinNappi.isSelected()){
+            this.ajastinNappi.setSelected(false);
+        }
+        if(this.musiikkiNappi.isSelected()){
+            this.musiikkiNappi.setSelected(false);
+        }
     }
 
 }

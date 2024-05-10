@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import com.pasianssipeli.controller.AloitusOhjain;
 import com.pasianssipeli.controller.AsetusOhjain;
 import com.pasianssipeli.controller.ValikkoOhjain;
+import com.pasianssipeli.controller.LopetusOhjain;
 
 // Creates the main window, which is the basis for all the windows.
 public class MainPanel extends JPanel {
@@ -15,6 +16,7 @@ public class MainPanel extends JPanel {
     private JPanel aloitusRuutu;
     private JPanel peliRuutu;
     private JPanel asetusRuutu;
+    private JPanel lopetusRuutu;
 
     private String edellinenRuutu;
 
@@ -35,6 +37,9 @@ public class MainPanel extends JPanel {
         this.asetusRuutu = luoAsetusPaneeli();
         add(asetusRuutu, "asetukset");
 
+        this.lopetusRuutu = luoLopetusPaneeli();
+        add(lopetusRuutu, "lopetus");
+
     }
 
     private PeliPaneeli luoPeliPaneeli() {
@@ -53,6 +58,12 @@ public class MainPanel extends JPanel {
         AsetusPaneeli asetusPaneeli = new AsetusPaneeli(this); // Väliaikainen paneeli, joka palautetaan.
         new AsetusOhjain(this, mainFrame, asetusPaneeli); // Ohjaimet yhdistää elementtejä toisiinsa.
         return asetusPaneeli;
+    }
+
+    private LopetusPaneeli luoLopetusPaneeli() {
+        LopetusPaneeli lopetusPaneeli = new LopetusPaneeli(this); // Väliaikainen paneeli, joka palautetaan.
+        new LopetusOhjain(this, lopetusPaneeli); // Ohjaimet yhdistää elementtejä toisiinsa.
+        return lopetusPaneeli;
     }
 
 

@@ -1,7 +1,10 @@
 package com.pasianssipeli.controller;
 
+import com.pasianssipeli.view.MainFrame;
 import com.pasianssipeli.view.MainPanel;
+import com.pasianssipeli.view.OhjeFrame;
 import com.pasianssipeli.view.PeliPaneeli;
+import com.pasianssipeli.view.UusiPeliPeru;
 
 import java.awt.Component;
 import java.awt.event.*;
@@ -39,8 +42,31 @@ public class ValikkoOhjain {
             }
         });
 
-        // Tähän tulisi toinen uusi actionListener tarvittaessa. esim
-        // uusiPeliNappi.addActionListener(new ActionListener() .....)
+        JButton voititPelinNappi = peliPaneeli.getTestiNappi();
+        voititPelinNappi.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                mainPanel.vaihdaNakyma("lopetus");
+            }
+        });
+
+        JButton uusiPeliNappi = peliPaneeli.getUusiPeliNappi();
+        uusiPeliNappi.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                MainFrame mainFrame = mainPanel.getMainFrame();
+                new UusiPeliPeru(mainFrame);
+            }
+        });
+
+        JButton peruNappi = peliPaneeli.getPeruNappi();
+        peruNappi.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                MainFrame mainFrame = mainPanel.getMainFrame();
+                new UusiPeliPeru(mainFrame);
+            }
+        });
 
     }
 
@@ -56,6 +82,7 @@ public class ValikkoOhjain {
     }
     
     private void showHelp() {
-        System.out.println("Ohjeet valittu");
+        MainFrame mainFrame = mainPanel.getMainFrame();
+        new OhjeFrame(mainFrame);
     }
 }
