@@ -2,27 +2,21 @@ package com.pasianssipeli.controller;
 
 import com.pasianssipeli.view.MainPanel;
 import com.pasianssipeli.view.OhjeFrame;
-import com.pasianssipeli.view.PeliPaneeli;
-import com.pasianssipeli.Main;
 import com.pasianssipeli.view.AloitusPaneeli;
 import com.pasianssipeli.view.LopetusDialog;
 import com.pasianssipeli.view.MainFrame;
 
-import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.event.*;
 
 import javax.swing.*;
 
 public class AloitusOhjain {
     private MainPanel mainPanel;
-    private MainFrame mainFrame;
     private AloitusPaneeli aloitusPaneeli;
 
     public AloitusOhjain(MainPanel mainPanel, MainFrame mainFrame, AloitusPaneeli aloitusPaneeli) {
         this.mainPanel = mainPanel;
         this.aloitusPaneeli = aloitusPaneeli;
-        this.mainFrame = mainFrame; // Tuotu, koska dialogi halutaan liittää tähän.
         addControlLogic();
     }
 
