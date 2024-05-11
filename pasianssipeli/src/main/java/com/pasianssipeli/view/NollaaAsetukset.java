@@ -12,8 +12,11 @@ import javax.swing.JPanel;
 
 public class NollaaAsetukset extends JDialog {
 
-    public NollaaAsetukset(JFrame parent) {
+    AsetusPaneeli asetukset;
+
+    public NollaaAsetukset(JFrame parent, AsetusPaneeli asetusPaneeli) {
         super(parent, "Vahvista", true);
+        this.asetukset = asetusPaneeli;
 
         JDialog dialog = new JDialog();
         dialog.setTitle("Vahvista");
@@ -41,8 +44,7 @@ public class NollaaAsetukset extends JDialog {
         // Add action listeners to buttons
         yesButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //MainPanel mainPanel;
-                //mainPanel.setButtonsSelected();
+                asetusPaneeli.resetAllButtons();
                 dialog.dispose();
             }
         });

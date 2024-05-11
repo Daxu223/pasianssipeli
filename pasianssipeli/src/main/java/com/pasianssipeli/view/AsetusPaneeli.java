@@ -98,7 +98,6 @@ public class AsetusPaneeli extends JPanel {
         aanetNappi.setPreferredSize(nappienKoko);
         musiikkiNappi.setPreferredSize(nappienKoko);
 
-        // TODO: Java ei tue pyöristettyjä nappeja = custom JToggleButton class
         ajastinNappi.setBorder(null);
         siirrotNappi.setBorder(null);
         aanetNappi.setBorder(null);
@@ -183,19 +182,12 @@ public class AsetusPaneeli extends JPanel {
         return nollausNappi;
     }
 
-    public void setButtonsSelected(){
-        if(this.aanetNappi.isSelected()){
-            this.aanetNappi.setSelected(false);
-        }
-        if(this.siirrotNappi.isSelected()){
-            this.siirrotNappi.setSelected(false);
-        }
-        if(this.ajastinNappi.isSelected()){
-            this.ajastinNappi.setSelected(false);
-        }
-        if(this.musiikkiNappi.isSelected()){
-            this.musiikkiNappi.setSelected(false);
-        }
+    public void resetAllButtons() {
+        ajastinNappi.defaultSetting();
+        siirrotNappi.defaultSetting();
+        aanetNappi.defaultSetting();
+        musiikkiNappi.defaultSetting();
+        
     }
 
 }

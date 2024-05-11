@@ -50,7 +50,7 @@ public class AsetusOhjain {
         nollaaButton.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 MainFrame mainFrame = mainPanel.getMainFrame();
-                new NollaaAsetukset(mainFrame);
+                new NollaaAsetukset(mainFrame, asetusPaneeli);
             }            
         });
     }
