@@ -1,4 +1,4 @@
-//Kortti-luokka sisältää kortin arvon ja maan.
+// Kortti-luokka sisältää kortin arvon ja maan.
 package com.pasianssipeli.model;
 
 import java.awt.Image;

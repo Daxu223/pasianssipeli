@@ -2,8 +2,6 @@ package com.pasianssipeli.view;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
-
 public class AloitusPaneeli extends JPanel {
 
     private JPanel otsikkopaneeli;
@@ -14,9 +12,6 @@ public class AloitusPaneeli extends JPanel {
     private JLabel nappi2;
     private JLabel nappi3;
     private JLabel nappi4;
-
-    private Font tekstinKoko = new Font("Arial", Font.BOLD, 18);
-    private Dimension nappienKoko = new Dimension(50, 30);
 
     public AloitusPaneeli(MainPanel mainPanel) {
 
@@ -35,14 +30,11 @@ public class AloitusPaneeli extends JPanel {
 
         JPanel otsikkopaneeli = new JPanel();
         otsikkopaneeli.setLayout(new BorderLayout());
-        //otsikkopaneeli.setBackground(Color.green);
         otsikkopaneeli.setPreferredSize(new Dimension(MainFrame.getFrameX(), 400));
 
         JLabel otsikko = new JLabel("PASIANSSI", JLabel.CENTER);
         otsikko.setForeground(Color.orange);
         otsikko.setFont(new Font("Arial", Font.BOLD, 100));
-        //otsikkopaneeli.setBackground(Color.lightGray);
-
         otsikkopaneeli.add(otsikko, BorderLayout.PAGE_END);
 
         return otsikkopaneeli;
@@ -52,7 +44,6 @@ public class AloitusPaneeli extends JPanel {
 
         JPanel keskipaneeli = new JPanel();
         keskipaneeli.setLayout(new GridBagLayout());
-        //keskipaneeli.setBackground(Color.red);
         keskipaneeli.setPreferredSize(new Dimension(MainFrame.getFrameX(), 200));
         keskipaneeli.setBorder(BorderFactory.createEmptyBorder(0,360,0,300));
 
@@ -74,8 +65,6 @@ public class AloitusPaneeli extends JPanel {
         this.nappi4 = new JLabel("LOPETA");
         nappi4.setFont(new Font("Arial", Font.BOLD, 15));
 
-        //keskipaneeli.setBackground(Color.lightGray);
-
         keskipaneeli.add(nappi1, gbc);
         keskipaneeli.add(nappi2, gbc);
         keskipaneeli.add(nappi3, gbc);
@@ -90,7 +79,6 @@ public class AloitusPaneeli extends JPanel {
         alapaneeli.setLayout(new BorderLayout());
 
         JLabel tekijat = new JLabel("© Samu Kollin & Jaakko Ollila", JLabel.CENTER);
-        //alapaneeli.setBackground(Color.lightGray);
 
         alapaneeli.add(tekijat, BorderLayout.WEST);
 
@@ -110,11 +98,4 @@ public class AloitusPaneeli extends JPanel {
     public JLabel getNappi4(){
         return this.nappi4;
     }
-
-    /*public void addButtonItemListener(int menuItemIndex, ActionListener listener) {
-        JLabel item = getMenuItem(menuItemIndex);
-        if (item != null) {
-            item.addActionListener(listener);
-        }
-    }*/
 }

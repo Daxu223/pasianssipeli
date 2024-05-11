@@ -17,9 +17,8 @@ public class LopetusDialog extends JDialog {
 
         JDialog dialog = new JDialog();
         dialog.setTitle("Vahvista");
-        dialog.setModal(true); // Make it modal if needed
+        dialog.setModal(true);
 
-        // Create and add components to the dialog
         JLabel label = new JLabel("<html>Haluatko varmasti<br>lopettaa pelin?</html>?", JLabel.CENTER);
         dialog.add(label, BorderLayout.CENTER);
 
@@ -47,11 +46,10 @@ public class LopetusDialog extends JDialog {
 
         noButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                dialog.dispose(); // Close the dialog
+                dialog.dispose(); // Sulje dialogi
             }
         });
 
-        // Make the dialog visible
         dialog.setVisible(true);
     }
 }

@@ -56,9 +56,8 @@ public class AsetusPaneeli extends JPanel {
         asetusNappienPaikat.anchor = GridBagConstraints.NORTHWEST; // Komponentit vasemmalle ylös
         asetusNappienPaikat.fill = GridBagConstraints.HORIZONTAL;
         asetusNappienPaikat.insets = new Insets(20, 0, 20, 0); // Marginaalit: top, left,bottom, right 
-        asetusNappienPaikat.weightx = asetusNappienPaikat.weighty = 0.1; // TODO: Säädä vastamaan muita weightejä
+        asetusNappienPaikat.weightx = asetusNappienPaikat.weighty = 0.1;
 
-        // TODO: AAARRRRRRRGGHHH en ymmärrä mikä tossa on että on tommonen luikaus väli ensimmäisen rivin ja tokan rivin välillä
         GridBagConstraints asetustekstienPaikat = new GridBagConstraints();
         asetustekstienPaikat.anchor = GridBagConstraints.NORTHWEST; // Komponentit vasemmalle ylös
         asetustekstienPaikat.fill = GridBagConstraints.HORIZONTAL;
@@ -104,7 +103,7 @@ public class AsetusPaneeli extends JPanel {
         musiikkiNappi.setBorder(null);
 
         // Alustetaan tekstit
-        JLabel ajastinTeksti = new JLabel("Näytä ajastin"); // Näin voi tehdä
+        JLabel ajastinTeksti = new JLabel("Näytä ajastin");
         JLabel siirrotTeksti = new JLabel("Näytä siirrot");
         JLabel aanetTeksti = new JLabel("Äänet");
         JLabel musiikkiTeksti = new JLabel("Musiikki");
@@ -125,16 +124,13 @@ public class AsetusPaneeli extends JPanel {
         addComponent(asetukset, musiikkiTeksti, asetustekstienPaikat, 2 , 1); // Rivi 2, toinen erä 
         addComponent(asetukset, musiikkiNappi, asetusNappienPaikat, 3, 1); // Rivi 2, toinen erä
 
-        // TODO: Jos osaat tehdä paremmin, niin tee pliis :D
         // Näkymätön filleri oikealle
         JPanel rightFiller = new JPanel();
-        // rightFiller.setBackground(Color.YELLOW);
         rightFiller.setOpaque(false);
         asetukset.add(rightFiller, oikeanPaneelinPaikka);
 
         // Näkymätön filleri alhaalle
         JPanel bottomFiller = new JPanel();
-        // bottomFiller.setBackground(Color.YELLOW);
         bottomFiller.setOpaque(false);
         asetukset.add(bottomFiller, alemmanPaneelinPaikka);
 
@@ -186,8 +182,6 @@ public class AsetusPaneeli extends JPanel {
         ajastinNappi.defaultSetting();
         siirrotNappi.defaultSetting();
         aanetNappi.defaultSetting();
-        musiikkiNappi.defaultSetting();
-        
+        musiikkiNappi.defaultSetting();   
     }
-
 }

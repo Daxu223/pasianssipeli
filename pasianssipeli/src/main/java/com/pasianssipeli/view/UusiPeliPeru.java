@@ -19,21 +19,17 @@ public class UusiPeliPeru extends JDialog {
 
         JLabel textArea = new JLabel(preWrittenText);
 
-        // Create a JScrollPane to add scrolling functionality to the text area
         JScrollPane scrollPane = new JScrollPane(textArea);
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); // Always show vertical scroll bar
-        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER); // Never show horizontal scroll bar
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+        scrollPane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 
-        // Add the scroll pane to the dialog
         dialog.add(scrollPane);
 
-        // Set the size of the dialog
         dialog.setSize(500, 150);
 
-        // Set the position of the dialog (centered on the screen)
+        // Keskitä näyttö
         dialog.setLocationRelativeTo(null);
 
-        // Make the dialog visible
         dialog.setVisible(true);
     }
 }

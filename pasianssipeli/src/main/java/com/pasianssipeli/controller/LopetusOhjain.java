@@ -1,10 +1,8 @@
 package com.pasianssipeli.controller;
 
-import com.pasianssipeli.Main;
 import com.pasianssipeli.view.MainPanel;
 import com.pasianssipeli.view.LopetusPaneeli;
 
-import java.awt.Component;
 import java.awt.event.*;
 
 import javax.swing.*;

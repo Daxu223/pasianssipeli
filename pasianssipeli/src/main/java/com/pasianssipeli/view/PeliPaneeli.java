@@ -33,7 +33,6 @@ public class PeliPaneeli extends JPanel {
 
     }
 
-    // TODO: Näyttää ihan ok hyvältä, mutta tekstien pitäisi olla menuitemeiden yläosassa
     private JPopupMenu teeValikko() {
         JPopupMenu menu = new JPopupMenu();
         JMenuItem asetukset = new JMenuItem("ASETUKSET", JMenuItem.NORTH);
@@ -121,7 +120,6 @@ public class PeliPaneeli extends JPanel {
         voititPelinNappi.setBorder(null);
         bottomPanel.add(voititPelinNappi, c);
 
-        // TODO: Paremmaksi, esim. kuvat ja tälläiset
         // Lisätään piste-alue
         JPanel pisteAlue = new JPanel();
         JLabel aika = new JLabel("Aika:");
@@ -241,8 +239,6 @@ public class PeliPaneeli extends JPanel {
         return topPanel;
 
     }
-
-    // TODO: Ehkä koko valikko kannattaa refaktoroida omaan luokkaansa.
 
     public JButton getTestiNappi(){
         return voititPelinNappi;

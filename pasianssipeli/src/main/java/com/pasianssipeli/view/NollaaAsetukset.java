@@ -35,13 +35,10 @@ public class NollaaAsetukset extends JDialog {
 
         dialog.add(buttonPanel, BorderLayout.SOUTH);
 
-        // Set the size of the dialog
         dialog.setSize(300, 150);
 
-        // Set the position of the dialog (centered on the screen)
         dialog.setLocationRelativeTo(null);
 
-        // Add action listeners to buttons
         yesButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 asetusPaneeli.resetAllButtons();
@@ -51,11 +48,10 @@ public class NollaaAsetukset extends JDialog {
 
         noButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                dialog.dispose(); // Close the dialog
+                dialog.dispose(); // Sulje dialogi
             }
         });
 
-        // Make the dialog visible
         dialog.setVisible(true);
     }
 }
